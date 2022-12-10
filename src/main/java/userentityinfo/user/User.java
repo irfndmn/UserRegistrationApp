@@ -44,6 +44,16 @@ public class User {
         this.kayit=kayit;
 
         setUserPsw();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
 }
