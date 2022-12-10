@@ -98,7 +98,6 @@ public class UserRunner {
             System.out.println("***********************");
 
             System.out.println();
-            System.out.println();
             System.out.println("Kullanici Hesabiniz : "+User.usNam);
             System.out.println("Kullanici Hesap Sifreniz : "+User.userPsw);
 
