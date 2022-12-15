@@ -46,14 +46,7 @@ public class User {
         setUserPsw();
         
         
-        
-        
-        
-        
-        
-        
-        
-        
+
     }
 
 }

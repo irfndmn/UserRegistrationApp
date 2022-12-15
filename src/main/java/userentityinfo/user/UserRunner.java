@@ -9,15 +9,79 @@ public class UserRunner {
         Scanner scan = new Scanner(System.in);
 
         do{
-            // Ad soyad
-            System.out.println("Kullanici Lutfen Isminizi Giriniz");
-            String nam= scan.next();
-            nam=nam.substring(0,1).toUpperCase()+nam.substring(1).toLowerCase();
-            System.out.println("Kullanici Lutfen Soyadinizi Giriniz");
-            String soyad= scan.next();
-            soyad=soyad.substring(0,1).toUpperCase()+soyad.substring(1).toLowerCase();
+            // Ad
+            String nam;
+            do {
+                System.out.println("Kullanici Lutfen Ilk Isminizi Giriniz");
+                nam = scan.nextLine().trim();
+                if(nam.isBlank()){
+                    System.out.println("IlkIsminizi Bos Gecemezsiniz");
+                    continue;
+                }else {
+                    boolean a = nam.replaceAll("[a-zA-Z ]","").length()>0;
+                    if(a){
+                        System.out.println("Isim Harf Disinda Bir Karakter Iceremez");
+                    }else {
 
-            String fulName=nam+" "+soyad;
+                        nam = nam.split(" ")[0];
+                        nam = nam.substring(0, 1).toUpperCase() + nam.substring(1).toLowerCase();
+                        break;
+                    }
+                }
+            }while(true);
+
+            //Orta Ad
+
+            String nam2;
+
+            do {
+                System.out.println("Kullanici Lutfen Varsa Orta isminizi Giriniz Yoksa E'ye Basiniz");
+
+                nam2 = scan.nextLine().trim();
+                if (nam2.equalsIgnoreCase("e")) {
+                    nam2="";
+                    break;
+                }else if(nam2.isBlank()){
+                    continue;
+                } else {
+                    boolean ortFrmt=nam2.replaceAll("[a-zA-Z ]","").length()>0;
+                    if(ortFrmt) {
+
+                        System.out.println("Harf Disinda Karakter Iceren Bir Isim Giremezsiniz");
+                    }else {
+                        nam2=nam2.split(" ")[0];
+                        nam2 = nam2.substring(0, 1).toUpperCase() + nam2.substring(1).toLowerCase();
+                        break;
+                    }
+                }
+            }while (true);
+
+            //Soyad
+
+            String soyad;
+            do {
+                System.out.println("Kullanici Lutfen Soyadinizi Giriniz");
+                soyad = scan.nextLine().trim();
+                if(soyad.isBlank()){
+                    System.out.println("Soyadi Bos Gecemezsiniz");
+                }else {
+                    boolean syFrm=soyad.replaceAll("[a-zA-Z ]","").length()>0;
+                    if(syFrm){
+                        System.out.println("Soyad Harf Disinda Bir Karakter Iceremez");
+                    }else {
+
+                        soyad=soyad.split(" ")[0];
+                        soyad = soyad.substring(0, 1).toUpperCase() + soyad.substring(1).toLowerCase();
+                        break;
+                    }
+
+                }
+            }while(true);
+
+            String fulName=nam+" "+nam2+" "+soyad;
+            fulName=fulName.replace("  "," ");
+
+
 
 
             // TC no
@@ -25,23 +89,24 @@ public class UserRunner {
             String tc;
             boolean tcFrmt;
             do {
+
                 System.out.println("Kullanici Lutfen T.C, giriniz");
-                tc = scan.next();
+                tc = scan.nextLine().trim().replaceAll(" ","");
+
                 tcFrmt = tc.replaceAll("\\d", "").length() == 0 && tc.length() == 11;
 
             }while (!tcFrmt);
-
             //tel no
 
 
-            String no ;
+            String no;
             boolean telFrmt;
 
-              do{
+            do {
                 System.out.println("Lutfen Gecerli Bir Telefon No Giriniz");
-                no=scan.next();
-                  telFrmt= no.startsWith("0")&&no.length()==11&&no.replaceAll("[0-9]","").length()==0;
-              }while(!telFrmt);
+                no = scan.nextLine().trim().replaceAll(" ","");
+                telFrmt = no.startsWith("0") && no.length() == 11 && no.replaceAll("[0-9]", "").length() == 0;
+            } while (!telFrmt);
 
             //e - mail
 
@@ -49,9 +114,11 @@ public class UserRunner {
             boolean emlFrmt;
             do{
                 System.out.println("Kullanici Lutfen  Uygun Bir  E Mail Giriniz");
-                emaiL=scan.next();
-            emlFrmt=emaiL.endsWith("@hotmail.com")||emaiL.endsWith("@gmail.com")||emaiL.endsWith("@outlook.com")&&!emaiL.startsWith("@");
-          }while (!emlFrmt);
+                emaiL=scan.nextLine().trim();
+                emlFrmt=emaiL.endsWith("@hotmail.com")||emaiL.endsWith("@gmail.com")||emaiL.endsWith("@outlook.com")&&!emaiL.startsWith("@")&&!emaiL.contains(" ");
+            }while (!emlFrmt);
+
+
 
             //yas
             byte yas;
